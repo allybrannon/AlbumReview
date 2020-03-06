@@ -26,12 +26,22 @@ router.get("/login", async (req, res, next) => {
   });
 });
 
-router.post("/login", function(req, res, next) {
+router.post("/login", async function(req, res, next) {
   const { email, password } = req.body;
 
   const user = new UserModel(null, null, null, email, password);
-  user.loginUser();
-  res.sendStatus(200);
+  const loginResponse = await user.loginUser();
+  console.log("login response is", loginResponse);
+
+  if (!!loginResponse.isValid) {
+    req.session.is_logged_in = loginResponse.isValid;
+    req.session.user_id = loginResponse.user_id;
+    req.session.first_name = loginResponse.first_name;
+    req.session.last_name = loginResponse.last_name;
+    res.redirect(200, "/");
+  } else {
+    res.sendStatus(403);
+  }
 });
 
 router.post("/signup", function(req, res, next) {

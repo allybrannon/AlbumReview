@@ -11,3 +11,7 @@ body {
 a {
   color: #00b7ff;
 }
+
+label {
+  font-size: 20px;
+}
