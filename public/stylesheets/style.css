@@ -15,3 +15,18 @@ a {
 label {
   font-size: 20px;
 }
+
+textarea {
+  width: 200px;
+  height: 100px;
+}
+
+@media screen and (max-device-width: 667px) {
+  body {
+    font: 40px "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+
+  label {
+    font: 44px "Lucida Grande", Helvetica, Arial, sans-serif;
+  }
+}
