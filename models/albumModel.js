@@ -26,12 +26,12 @@ class AlbumModel {
     }
   }
 
-  static async addReview(r_id, review_title, review_text) {
+  static async addReview(users_id, r_id, review_title, review_text) {
     try {
       const response = await db.one(
         `INSERT INTO reviews (users_id, album_id, title, review, stars)
                 VALUES ($1,$2,$3,$4,$5) RETURNING id`,
-        [1, r_id, review_title, review_text, 5]
+        [users_id, r_id, review_title, review_text, 5]
       );
       console.log(response);
       return response;

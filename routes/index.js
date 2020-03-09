@@ -22,11 +22,13 @@ router.get("/", async function(req, res, next) {
 
 router.post("/", async function(req, res) {
   console.log("req body:", req.body);
-  const { album_id, review_title, review_text } = req.body;
+  const user_id = req.session.user_id;
+  const { album_id, reviews_title, review_review } = req.body;
   const postData = await albumModel.addReview(
+    user_id,
     album_id,
-    review_title,
-    review_text
+    reviews_title,
+    review_review
   );
   console.log(postData);
   res.sendStatus(200);

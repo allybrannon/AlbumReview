@@ -8,7 +8,7 @@ router.get("/signup", async (req, res, next) => {
   res.render("template", {
     locals: {
       title: "Sign up",
-      is_logged_in: req.session.is_logged_in
+      is_logged_in: is_logged_in
     },
     partials: {
       partial: "partial-signup"
@@ -37,7 +37,7 @@ router.post("/login", async function(req, res, next) {
 
   if (!!loginResponse.isValid) {
     req.session.is_logged_in = loginResponse.isValid;
-    req.session.user_id = loginResponse.user_id;
+    req.session.users_id = loginResponse.user_id;
     req.session.first_name = loginResponse.first_name;
     req.session.last_name = loginResponse.last_name;
     res.redirect("/");
