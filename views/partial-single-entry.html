@@ -6,6 +6,7 @@ ${data.map(album => { return `
 
 </br>
 <hr />
+${ !!is_logged_in ? `
 <h2>Leave your review of this album:</h2>
 <form action="/" method="POST">
   <input type="hidden" name="album_id" value="${data[0].id}" />
@@ -21,8 +22,10 @@ ${data.map(album => { return `
     ></textarea>
   </label>
   <button type="submit">Save Review</button>
-</form>
 
+</form>
+` : `<p>Login to submit reviews</p>
+    ` }
 </br>
 <hr />
 <h2>User Reviews</h2>

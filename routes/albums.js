@@ -11,7 +11,9 @@ router.get("/:entry_id?", async (req, res, next) => {
     locals: {
       title: data[0].name_album,
       data: data,
-      reviews: reviews
+      reviews: reviews,
+      is_logged_in: req.session.is_logged_in,
+      users_id: req.session.users_id
     },
     partials: {
       partial: "partial-single-entry"
